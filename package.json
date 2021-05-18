@@ -1,0 +1,15 @@
+{
+  "name": "secondMern",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"npm start --prefix frontend \" \"npm start --prefix backend\""
+  },
+  "keywords": [],
+  "author": "Murat Can Öncü",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^6.1.0"
+  }
+}
