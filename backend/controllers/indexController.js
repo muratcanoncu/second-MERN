@@ -1,4 +1,5 @@
 const Plant = require("../models/Plant");
+
 const homeGetController = (req, res) => {
   Plant.find((err, docs) => {
     res.json(docs);
@@ -7,6 +8,7 @@ const homeGetController = (req, res) => {
 const homePostController = (req, res) => {
   const newPlantSchema = new Plant(req.body.plant);
   newPlantSchema.save((err, doc) => {
+    console.log(doc);
     res.json("New Plant Added!");
   });
 };
