@@ -1,4 +1,4 @@
-import { cloneElement, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 function PlantForm() {
   const [plantState, setPlantState] = useState({
@@ -7,29 +7,34 @@ function PlantForm() {
     water: 0,
     photo: {},
   });
+  const selectPhoto = (event) => {
+    console.log(event.target.files[0]);
+    setPlantState({ ...plantState, photo: event.target.files[0] });
+  };
 
   const storePlant = (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append("name", plantState.name);
-    formData.append("climate", plantState.climate);
-    formData.append("water", plantState.water);
-    formData.append("plantPhoto", plantState.photo);
+
+    const plantData = new FormData();
+    plantData.append("name", plantState.name);
+    plantData.append("climate", plantState.climate);
+    plantData.append("water", plantState.water);
+    plantData.append("plantPhoto", plantState.photo);
+
     const config = {
       headers: {
         "Content-type": "multipart/form-data",
       },
     };
+
     axios
-      .post("http://localhost:5200/plant/add", formData, config)
+      .post("http://localhost:5200/plant/add", plantData, config)
       .then((response) => {
         console.log(response.data);
       })
       .catch((err) => console.log(err));
   };
-  const selectPhoto = (event) => {
-    setPlantState({ ...plantState, photo: event.target.files[0] });
-  };
+
   return (
     <form className="plantForm" onSubmit={storePlant}>
       <label>Name</label>

@@ -14,7 +14,8 @@ function PlantList() {
   };
 
   useEffect(() => {
-    axios("http://localhost:5200/plant/add")
+    axios
+      .get("http://localhost:5200/plant/all")
       .then((response) => {
         setPlantList(response.data);
       })
@@ -35,14 +36,13 @@ function PlantList() {
         </thead>
         <tbody>
           {plantList.map((plant) => {
-            console.log(plant);
             return (
               <tr key={plant._id}>
                 <td>{plant.name}</td>
                 <td>{plant.climate}</td>
                 <td>{plant.water}</td>
                 <td>
-                  <img src={plant.photo}></img>
+                  <img src={`http://localhost:5200/${plant.photo}`}></img>
                 </td>
                 <td>
                   <button

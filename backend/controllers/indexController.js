@@ -1,10 +1,5 @@
 const Plant = require("../models/Plant");
 
-const homeGetController = (req, res) => {
-  Plant.find((err, docs) => {
-    res.json(docs);
-  });
-};
 const homePostController = (req, res) => {
   const newPlantSchema = new Plant({
     name: req.body.name,
@@ -25,5 +20,9 @@ const deleteController = (req, res) => {
     console.log("Item is successfully deleted:", doc);
   });
 };
-
+const homeGetController = (req, res) => {
+  Plant.find((err, docs) => {
+    res.json(docs);
+  });
+};
 module.exports = { homePostController, homeGetController, deleteController };
