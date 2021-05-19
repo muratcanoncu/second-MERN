@@ -5,6 +5,7 @@ const cors = require("cors");
 const dataBase = require("./config/dataBase");
 dataBase();
 //! Settings
+app.use(express.static(__dirname + "/public"));
 app.use(cors());
 app.use(express.json());
 

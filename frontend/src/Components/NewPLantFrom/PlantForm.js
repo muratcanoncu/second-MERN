@@ -1,28 +1,35 @@
-import { useState } from "react";
+import { cloneElement, useState } from "react";
 import axios from "axios";
 function PlantForm() {
   const [plantState, setPlantState] = useState({
     name: "",
-    climate: "",
+    climate: "Winter",
     water: 0,
+    photo: {},
   });
 
   const storePlant = (e) => {
     e.preventDefault();
-    const plant = plantState;
+    const formData = new FormData();
+    formData.append("name", plantState.name);
+    formData.append("climate", plantState.climate);
+    formData.append("water", plantState.water);
+    formData.append("plantPhoto", plantState.photo);
+    const config = {
+      headers: {
+        "Content-type": "multipart/form-data",
+      },
+    };
     axios
-      .post("http://localhost:5200/plant/add", { plant })
+      .post("http://localhost:5200/plant/add", formData, config)
       .then((response) => {
         console.log(response.data);
       })
       .catch((err) => console.log(err));
-    setPlantState({
-      name: "",
-      climate: "",
-      water: 0,
-    });
   };
-
+  const selectPhoto = (event) => {
+    setPlantState({ ...plantState, photo: event.target.files[0] });
+  };
   return (
     <form className="plantForm" onSubmit={storePlant}>
       <label>Name</label>
@@ -34,7 +41,7 @@ function PlantForm() {
       <label>Climate</label>
       <select
         name="climate"
-        value={plantState.climate}
+        defaultValue={plantState.climate}
         onChange={(e) =>
           setPlantState({ ...plantState, climate: e.target.value })
         }
@@ -53,6 +60,8 @@ function PlantForm() {
           setPlantState({ ...plantState, water: e.target.value })
         }
       ></input>
+      <label>Photo</label>
+      <input type="file" name="plantPhoto" onChange={selectPhoto}></input>
       <button type="submit" className="btn btn-success">
         Add Plant
       </button>
