@@ -1,38 +1,82 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+li a {
+  color: black;
+  text-decoration: none;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+li a:hover {
+  color: white;
+  text-decoration: none;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+ul {
+  list-style-type: none;
+}
+nav {
+  background: rgb(65, 231, 65);
+  height: 70px;
+  color: black;
+}
+nav ul {
+  width: 300px;
+}
+.body {
+  height: calc(100vh - 130px);
+  width: 100%;
+}
+main {
+  background: url("./Components/Assets/img/LandingBG.jpeg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 250px;
+}
+.body h1 {
+  text-align: center;
+  font-size: 4rem;
+  text-shadow: 2px 2px 5px green;
+}
+.formContainer {
+  background: url("./Components/Assets/img/formBg.jpeg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.plantForm {
+  box-shadow: 4px 4px 10px green;
+  margin-top: 15px;
+  margin-bottom: 150px;
+  width: 400px;
+  height: 350px;
+  display: flex;
+  justify-content: space-between;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  padding: 40px 0;
+  background-color: rgb(65, 231, 65);
+}
+.plantForm label {
+  font-weight: bolder;
+}
+.plantForm input {
+  border: none;
+  border-radius: 8px;
+  padding: 3px 7px;
+  outline: black;
+}
+.plantList {
+  background: url("./Components/Assets/img/plantListt.jpeg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+footer {
+  height: 60px;
+  background: rgb(65, 231, 65);
   color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
