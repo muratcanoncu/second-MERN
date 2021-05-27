@@ -7,6 +7,7 @@ import Navbar from "./Components/Navbar/NavBar";
 import LandingPage from "./Components/LandingPage/LandingPage";
 import PlantFormContainer from "./Components/NewPLantFrom/PlantFormContainer";
 import PlantList from "./Components/PlantList/PlantList";
+import SearchPage from "./Components/SearchTheData/SearchPage";
 import Footer from "./Components/Footer/Footer";
 
 function App() {
@@ -23,6 +24,9 @@ function App() {
           </Route>
           <Route path="/plantlist">
             <PlantList></PlantList>
+          </Route>
+          <Route path="/searchdata">
+            <SearchPage></SearchPage>
           </Route>
         </Switch>
         <Footer></Footer>

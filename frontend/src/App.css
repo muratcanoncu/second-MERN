@@ -28,7 +28,7 @@ nav {
   color: black;
 }
 nav ul {
-  width: 300px;
+  width: 500px;
 }
 .body {
   min-height: calc(100vh - 130px);

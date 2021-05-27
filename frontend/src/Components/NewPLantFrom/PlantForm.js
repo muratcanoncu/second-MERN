@@ -5,34 +5,55 @@ function PlantForm() {
     name: "",
     climate: "Winter",
     water: 0,
-    photo: {},
+    // photo: {},
   });
+  const [plantPhoto, setPlantPhoto] = useState({});
+
+  // const selectPhoto = (event) => {
+  //   setPlantState({
+  //     ...plantState,
+  //     photo: event.target.files[0],
+  //   });
+  // };
+
   const selectPhoto = (event) => {
-    console.log(event.target.files[0]);
-    setPlantState({ ...plantState, photo: event.target.files[0] });
+    setPlantPhoto(event.target.files[0]);
   };
 
   const storePlant = (e) => {
     e.preventDefault();
-
     const plantData = new FormData();
     plantData.append("name", plantState.name);
     plantData.append("climate", plantState.climate);
     plantData.append("water", plantState.water);
-    plantData.append("plantPhoto", plantState.photo);
-
+    plantData.append("plantPhoto", plantPhoto);
     const config = {
       headers: {
         "Content-type": "multipart/form-data",
       },
     };
 
+    // const jsonPlant = JSON.stringify(plantState);
+    // const jsonPlantPhoto = JSON.stringify(plantPhoto);
+    // console.log("plantObj", jsonPlant);
+    // console.log("plantPhoto", jsonPlantPhoto);
+    // const config = {
+    //   headers: {
+    //     "Content-type": "text/json",
+    //   },
+    // };
     axios
       .post("http://localhost:5200/plant/add", plantData, config)
       .then((response) => {
         console.log(response.data);
       })
       .catch((err) => console.log(err));
+    setPlantState({
+      name: "",
+      climate: "Winter",
+      water: 0,
+      photo: {},
+    });
   };
 
   return (
@@ -67,9 +88,7 @@ function PlantForm() {
       ></input>
       <label>Photo</label>
       <input type="file" name="plantPhoto" onChange={selectPhoto}></input>
-      <button type="submit" className="btn btn-success">
-        Add Plant
-      </button>
+      <button className="btn btn-success">Add Plant</button>
     </form>
   );
 }

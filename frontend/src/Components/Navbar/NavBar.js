@@ -20,6 +20,11 @@ function NavBar() {
             Plant List
           </NavLink>
         </li>
+        <li className="pt-1">
+          <NavLink to="/searchdata" replace>
+            Search Plant
+          </NavLink>
+        </li>
       </ul>
     </nav>
   );
